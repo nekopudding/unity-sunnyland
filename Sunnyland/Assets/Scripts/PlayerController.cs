@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour
     private enum State {idle, running, jumping, falling};
     private State state = State.idle;
     [SerializeField] private int speed = 7;
+    [SerializeField] private float airControl = 0.2f;
     [SerializeField] private float jumpForce = 20f;
+
+    public int gems = 0;
 
     private void Start()
     {
@@ -22,29 +25,71 @@ public class PlayerController : MonoBehaviour
         coll = GetComponent<Collider2D>();
     }
 
-    private void Update() {
+    private void Update()
+    {
+        
+        Movement();
+
+        AnimationState();
+        animator.SetInteger("state", (int)state); //set animation based on enumerator state
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Collectible")
+        {
+            Destroy(collision.gameObject);
+            gems++;
+        }
+    }
+
+    /**
+     * Function that controls movement based on input values. 
+     **/
+    private void Movement()
+    {
         float hDirection = Input.GetAxis("Horizontal");
-        if(hDirection < 0 ) {
-            rb.velocity = new Vector2(-speed,rb.velocity.y);
+        bool jumping = Input.GetButtonDown("Jump");
+        bool isTouchingGround = coll.IsTouchingLayers(ground);
+
+        //midair movement
+        if (hDirection < 0 && state == State.falling)
+        {
+            rb.AddForce(new Vector2(-airControl, 0f));
+        }
+        else if (hDirection > 0 && state == State.falling)
+        {
+            rb.AddForce(new Vector2(airControl, 0f));
+        }
+
+        //moving left
+        else if (hDirection < 0 && isTouchingGround)
+        {
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
 
         }
-        else if(hDirection > 0) {
-            rb.velocity = new Vector2(speed,rb.velocity.y);
+
+        //moving right
+        else if (hDirection > 0 && isTouchingGround)
+        {
+            rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
 
         }
-        
-        if(Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground)) {
-            rb.velocity = new Vector2(rb.velocity.x,jumpForce);
+
+        //jumping
+        if (jumping && isTouchingGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             state = State.jumping;
         }
-
-        VelocityState();
-        animator.SetInteger("state", (int) state);
     }
 
-    private void VelocityState()
+    /**
+     * Function that transitions between animation states as defined in the enumerator
+     **/
+    private void AnimationState()
     {
         if (state == State.jumping)
         {
