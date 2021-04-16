@@ -6,9 +6,9 @@ Main tutorial series used:
 
 https://www.youtube.com/playlist?list=PLpj8TZGNIBNy51EtRuyix-NYGmcfkNAuH
 
-## Notes for Development
-The player is able to jump move horizontally and interact with collectibles and enemies. 
+When completed, the game will be deployed on itch.io as a Webgl game
 
+## Notes for Development
 Fix Player from Sliding Down Ramps - can try changing rigidbody from dynamic to kinematic while touching ground
 
 Finish Implementing Frog - add attack animations, player health & interaction scripts, enemy movement AI
