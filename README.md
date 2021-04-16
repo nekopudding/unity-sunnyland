@@ -1,6 +1,6 @@
 **Personal Project / Summer 2020 - Ongoing**
 
-2D Plaformer created on Unity using the Sunnyland asset pack. Develeopment is still in progress.
+2D Plaformer created on Unity using the Sunnyland asset pack. Development is still in progress.
 
 Main tutorial series used:
 
