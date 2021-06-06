@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int speed = 7;
     //[SerializeField] private float airControl = 3f;
     [SerializeField] private float jumpForce = 20f;
+    [SerializeField] private float airControl = 0.6f;
     [SerializeField] private int gems = 0;
     [SerializeField] private Text gemText;
     [SerializeField] private float hurtForce = 5f;
@@ -57,9 +58,11 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy") 
         {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            
             if (state == State.falling)
             {
-                Destroy(other.gameObject);
+                enemy.JumpedOn();
                 Jump();
             }
             else
@@ -86,20 +89,19 @@ public class PlayerController : MonoBehaviour
         bool isTouchingGround = coll.IsTouchingLayers(ground);
 
         //midair movement
-        if (hDirection < 0 && state == State.falling)
+        if (hDirection < 0 && !isTouchingGround)
         {
-            rb.AddForce(new Vector2(-speed/2, 0f));
+            rb.velocity = new Vector2(-speed*airControl, rb.velocity.y);
         }
-        else if (hDirection > 0 && state == State.falling)
+        else if (hDirection > 0 && !isTouchingGround)
         {
-            rb.AddForce(new Vector2(speed/2, 0f));
+            rb.velocity = new Vector2(speed*airControl, rb.velocity.y);
         }
 
         //moving left
         else if (hDirection < 0 && isTouchingGround)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1); //sets sprite horizontal flip
 
         }
 
@@ -119,6 +121,15 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        if (hDirection <0)
+        {
+            transform.localScale = new Vector2(-1, 1); //sets sprite horizontal flip
+        }
+        else
+        {
+            transform.localScale = new Vector2(1, 1);
+        }
         
         
     }
@@ -126,7 +137,7 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x/2, jumpForce);
         state = State.jumping;
     }
     /**
@@ -151,7 +162,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (state == State.hurt)
         {
-            if (Mathf.Abs(rb.velocity.x) < 4f)
+            if (Mathf.Abs(rb.velocity.x) < 2f)
             {
                 state = State.idle;
             }
