@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     [SerializeField] private Collider2D coll;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private AudioSource footstep;
+    [SerializeField] private AudioSource gemAudio;
+    [SerializeField] private AudioSource jumpAudio;
+
 
 
     private enum State {idle, running, jumping, falling, hurt}; //animation states, decides interactions
@@ -47,6 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Collectible")
         {
+            gemAudio.Play();
             Destroy(collision.gameObject);
             gems++;
             gemText.text = gems.ToString();
@@ -137,6 +142,7 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        jumpAudio.Play();
         rb.velocity = new Vector2(rb.velocity.x/2, jumpForce);
         state = State.jumping;
     }
@@ -175,5 +181,10 @@ public class PlayerController : MonoBehaviour
         {
             state = State.idle;
         }
+    }
+
+    private void Footstep()
+    {
+        footstep.Play();
     }
 }

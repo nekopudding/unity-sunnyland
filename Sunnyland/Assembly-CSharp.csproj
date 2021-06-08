@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Frog.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\TileScript.cs" />
+    <None Include="Assets\explosionsoundslite\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -601,6 +602,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
@@ -664,6 +668,9 @@
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -678,12 +685,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/deany/OneDrive/文件/GitHub/unity_sunnyland/Sunnyland/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
