@@ -122,9 +122,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         //jumping
-        if (jumping && isTouchingGround)
+        if (jumping)
         {
-            Jump();
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.3f, ground);
+            if (hit.collider != null)
+                Jump();
         }
 
         if (hDirection <0)
