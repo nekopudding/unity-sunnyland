@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
-    [SerializeField] private Collider2D coll;
+    private Collider2D coll;
     [SerializeField] private LayerMask ground;
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioSource gemAudio;
@@ -17,13 +18,13 @@ public class PlayerController : MonoBehaviour
 
     private enum State {idle, running, jumping, falling, hurt}; //animation states, decides interactions
     private State state = State.idle;
-    [SerializeField] private int speed = 7;
+    private int speed = 9;
     //[SerializeField] private float airControl = 3f;
-    [SerializeField] private float jumpForce = 20f;
-    [SerializeField] private float airControl = 0.6f;
+    private float jumpForce = 25f;
+    private float airControl = 0.6f;
     [SerializeField] private int gems = 0;
-    [SerializeField] private Text gemText;
-    [SerializeField] private float hurtForce = 5f;
+    private TextMeshProUGUI gemText;
+    private float hurtForce = 10f;
      
 
     private void Start()
@@ -40,9 +41,9 @@ public class PlayerController : MonoBehaviour
             Movement();
         } 
         
-
-        AnimationState();
         animator.SetInteger("state", (int)state); //set animation based on enumerator state
+        AnimationState();
+        
     }
 
 
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
     //enemy collision
     private void OnCollisionEnter2D(Collision2D other)
     {
+        
         if(other.gameObject.tag == "Enemy") 
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
@@ -75,11 +77,11 @@ public class PlayerController : MonoBehaviour
                 state = State.hurt;
                 if (other.gameObject.transform.position.x > transform.position.x) 
                 {
-                    rb.velocity = new Vector2(-hurtForce, 0f);
+                    rb.velocity = new Vector2(-hurtForce, hurtForce);
                 }
                 else
                 {
-                    rb.velocity = new Vector2(hurtForce, 0f);
+                    rb.velocity = new Vector2(hurtForce, hurtForce);
                 }
             }
         }
@@ -94,32 +96,34 @@ public class PlayerController : MonoBehaviour
         bool isTouchingGround = coll.IsTouchingLayers(ground);
 
         //midair movement
-        if (hDirection < 0 && !isTouchingGround)
-        {
-            rb.velocity = new Vector2(-speed*airControl, rb.velocity.y);
-        }
-        else if (hDirection > 0 && !isTouchingGround)
-        {
-            rb.velocity = new Vector2(speed*airControl, rb.velocity.y);
-        }
+        if(state != State.hurt) {
+            if (hDirection < 0 && !isTouchingGround)
+            {
+                rb.velocity = new Vector2(-speed*airControl, rb.velocity.y);
+            }
+            else if (hDirection > 0 && !isTouchingGround)
+            {
+                rb.velocity = new Vector2(speed*airControl, rb.velocity.y);
+            }
 
-        //moving left
-        else if (hDirection < 0 && isTouchingGround)
-        {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            //moving left
+            else if (hDirection < 0 && isTouchingGround)
+            {
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
 
-        }
+            }
 
-        //moving right
-        else if (hDirection > 0 && isTouchingGround)
-        {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-            transform.localScale = new Vector2(1, 1);
-        }
-        //staying still
-        else if (hDirection == 0 && isTouchingGround)
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            //moving right
+            else if (hDirection > 0 && isTouchingGround)
+            {
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+                transform.localScale = new Vector2(1, 1);
+            }
+            //staying still
+            else if (hDirection == 0 && isTouchingGround)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
         //jumping
         if (jumping)
