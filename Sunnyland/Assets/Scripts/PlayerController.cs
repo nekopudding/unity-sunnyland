@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 25f;
     private float airControl = 0.8f;
     [SerializeField] private int gems = 0;
-    private TextMeshProUGUI gemText;
+    [SerializeField] private TextMeshProUGUI gemText;
     private float hurtForce = 10f;
      
 
