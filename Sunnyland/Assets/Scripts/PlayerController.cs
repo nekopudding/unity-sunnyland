@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Collider2D coll;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioSource gemAudio;
     [SerializeField] private AudioSource jumpAudio;
@@ -22,8 +23,6 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float airControl = 3f;
     private float jumpForce = 25f;
     private float airControl = 0.8f;
-    [SerializeField] private int gems = 0;
-    [SerializeField] private TextMeshProUGUI gemText;
     private float hurtForce = 10f;
      
 
@@ -54,8 +53,8 @@ public class PlayerController : MonoBehaviour
         {
             gemAudio.Play();
             Destroy(collision.gameObject);
-            gems++;
-            gemText.text = gems.ToString();
+            PermanentUI.perm.gems++;
+            PermanentUI.perm.gemText.text = PermanentUI.perm.gems.ToString();
         }
     }
 
@@ -67,8 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             
-            if (state == State.falling)
+            RaycastHit2D hit = Physics2D.Raycast(coll.bounds.center, Vector2.down, 1.3f, EnemyLayer);
+            if (hit.collider != null)
             {
+                state = State.falling;
                 enemy.JumpedOn();
                 Jump();
             }
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
         //jumping
         if (jumping)
         {
-            RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.3f, ground);
+            RaycastHit2D hit = Physics2D.Raycast(coll.bounds.center, Vector2.down, 0.8f, ground);
             if (hit.collider != null)
                 Jump();
         }
