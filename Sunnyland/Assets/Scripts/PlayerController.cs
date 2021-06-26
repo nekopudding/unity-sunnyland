@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             
             RaycastHit2D hit = Physics2D.Raycast(coll.bounds.center, Vector2.down, 1.3f, EnemyLayer);
-            if (hit.collider != null)
+            if (hit.collider != null || state == State.falling)
             {
                 state = State.falling;
                 enemy.JumpedOn();

@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a23ad83945d2b24dac1230b3394d75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SampleScene
+  sceneName: Level1
   btn: {fileID: 561309297}
 --- !u!114 &561309297
 MonoBehaviour:
