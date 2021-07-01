@@ -17,7 +17,7 @@ TagManager:
   - 
   - Ground
   - EnemyLayer
-  - 
+  - Player
   - 
   - 
   - 
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3321847549
+    locked: 0
+  - name: Projectiles
+    uniqueID: 440541415
     locked: 0

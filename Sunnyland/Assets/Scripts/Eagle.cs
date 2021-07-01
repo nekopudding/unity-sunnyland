@@ -5,13 +5,14 @@ using UnityEngine;
 public class Eagle : Enemy
 {
     [SerializeField] private Transform firePoint;
-    [SerializeField] private Transform player;
+    private Transform player;
     [SerializeField] private GameObject bulletPrefab;
-    private float shootRange = 20f;
+    private float shootRange = 12f; //should match radius of trigger on shot script
     private float shootCD = 3f;
 
     new void Start() {
         base.Start();
+        player = GameObject.Find("Player").transform;
         InvokeRepeating("Shoot", 0f, shootCD);
     }
 

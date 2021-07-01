@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private Collider2D coll;
-    [SerializeField] private LayerMask ground;
-    [SerializeField] private LayerMask EnemyLayer;
+    private LayerMask ground;
+    private LayerMask enemyLayer;
     [SerializeField] private AudioSource footstep;
     [SerializeField] private AudioSource gemAudio;
     [SerializeField] private AudioSource jumpAudio;
@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<CircleCollider2D>();
+
+        ground = LayerMask.GetMask("Ground");
+        enemyLayer = LayerMask.GetMask("EnemyLayer");
     }
 
     private void Update()
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             
-            RaycastHit2D hit = Physics2D.Raycast(coll.bounds.center, Vector2.down, 1.3f, EnemyLayer);
+            RaycastHit2D hit = Physics2D.Raycast(coll.bounds.center, Vector2.down, 1.3f, enemyLayer);
             if (hit.collider != null || state == State.falling)
             {
                 state = State.falling;
