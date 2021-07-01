@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\PermanentUI.cs" />
      <Compile Include="Assets\Scripts\Eagle.cs" />
      <Compile Include="Assets\Scripts\Frog.cs" />
      <Compile Include="Assets\Scripts\SceneChange.cs" />
@@ -44,7 +45,7 @@
      <Compile Include="Assets\Scripts\TileScript.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\PermanentUI.cs" />
+     <Compile Include="Assets\Scripts\EagleShot.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

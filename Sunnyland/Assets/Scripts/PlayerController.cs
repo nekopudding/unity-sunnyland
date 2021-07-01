@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //collectible collision
+    //trigger collision
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Collectible")
@@ -55,6 +55,18 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             PermanentUI.perm.gems++;
             PermanentUI.perm.gemText.text = PermanentUI.perm.gems.ToString();
+        }
+        if (collision.tag == "Enemy") //enemy projectiles
+        {
+                state = State.hurt;
+                if (collision.gameObject.transform.position.x > transform.position.x) 
+                {
+                    rb.velocity = new Vector2(-hurtForce, hurtForce);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(hurtForce, hurtForce);
+                }
         }
     }
 
