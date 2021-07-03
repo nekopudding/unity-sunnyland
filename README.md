@@ -6,7 +6,8 @@ Main tutorial series used:
 
 https://www.youtube.com/playlist?list=PLpj8TZGNIBNy51EtRuyix-NYGmcfkNAuH
 
-When completed, the game will be deployed on itch.io as a Webgl game
+Game playable on itch.io
+https://nekopudding.itch.io/sunnyland
 
 ## Notes for Development
 Fix Player from Sliding Down Ramps - can try changing rigidbody from dynamic to kinematic while touching ground
