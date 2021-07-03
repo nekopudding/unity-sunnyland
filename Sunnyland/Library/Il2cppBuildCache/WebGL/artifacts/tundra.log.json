@@ -1,0 +1,4 @@
+{"msg":"init","dagFile":"artifacts\\tundra.dag","targets":[]}
+{"msg":"newNode","annotation":"WriteResponseFile artifacts/rsp/12796431216760305333.rsp","index":1}
+{"msg":"noderesult","annotation":"WriteResponseFile artifacts/rsp/12796431216760305333.rsp","index":1,"exitcode":0}
+{"msg":"newNode","annotation":"Il2Cpp C:/Users/deany/OneDrive/文件/GitHub/UNITY_~1/SUNNYL~1/Library/Il2cppBuildCache/WebGL/Native/build.bc","index":2}

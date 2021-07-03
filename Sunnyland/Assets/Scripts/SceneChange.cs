@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,7 +17,14 @@ public class SceneChange : MonoBehaviour
     {
         btn = GetComponent<Button>();
         if (btn != null)
-            btn.onClick.AddListener(ChangeScenes);
+            btn.onClick.AddListener(NewGame);
+    }
+
+    private void NewGame()
+    {
+        if(PermanentUI.perm != null)
+            PermanentUI.perm.Reset();
+        SceneManager.LoadScene(sceneName);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

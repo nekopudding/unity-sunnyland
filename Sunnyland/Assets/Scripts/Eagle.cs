@@ -8,7 +8,7 @@ public class Eagle : Enemy
     private Transform player;
     [SerializeField] private GameObject bulletPrefab;
     private float shootRange = 12f; //should match radius of trigger on shot script
-    private float shootCD = 3f;
+    [SerializeField] private float shootCD = 3f;
 
     new void Start() {
         base.Start();
