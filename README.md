@@ -6,7 +6,8 @@ Main tutorial series used:
 
 https://www.youtube.com/playlist?list=PLpj8TZGNIBNy51EtRuyix-NYGmcfkNAuH
 
-Game playable on itch.io
+Game playable on itch.io:
+
 https://nekopudding.itch.io/sunnyland
 
 ## Notes for Development
